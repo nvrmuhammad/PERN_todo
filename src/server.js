@@ -1,9 +1,19 @@
 import express from 'express'
 import cors from 'cors'
-import { pool } from '../src/db/db.js'
+import sequelize from './db/db'
 
-const app = express()
-app.use(express.json())
-app.use(cors())
+async function server() {
+  try {
+    const app = express()
+    app.use(express.json())
+    app.use(cors())
 
-app.listen(2000, () => console.log('Server is running on port 2000'))
+    sequelize.sync({ alter: true })
+    console.log('Database connected successfully')
+
+    app.listen(2000, () => console.log('Server is running on port 2000'))
+  } catch (error) {
+    console.log(error.message)
+  }
+}
+server()
