@@ -10,7 +10,7 @@ Todo.init(
       autoIncrement: true,
       primaryKey: true,
     },
-    descriptions: {
+    description: {
       type: DataTypes.STRING,
     },
   },
